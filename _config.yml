@@ -46,9 +46,6 @@ exclude:
     - README.md
     - INSTALL.md
 
-permalink: /:categories/:title/
-breadcrumbs: true
-
 # The language setting is used in /includes/header.html for html-settings
 language: "en"
 
@@ -73,6 +70,8 @@ defaults:
       show_meta: true   # Show metadata for all posts
       # sidebar:        # Possible values › left, right › by default there will be no sidebar
       comments: false
+      permalink: /:categories/:title/
+      breadcrumbs: true
       author: mark     # Default author for posts
 
 
