@@ -1,1 +1,27 @@
-remote_theme:feeling-responsive
+remote_theme: feeling-responsive
+timezone: Europe/Amsterdam
+title: "R blogtest"
+name: "Mark van der Sman"
+site.description: "Test environment for showcasing R projects."
+breadcrumbs: true
+permalink: /:categories/:title/
+defaults:
+  # _posts
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      author: "M. van der Sman"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      read_time: true # estimated time a post has been read
+head_scripts:
+#  - https://code.jquery.com/jquery-3.2.1.min.js
+#  - /assets/js/custom-head-script.js
+
+#footer_scripts:
+#  - /assets/js/custom-footer-script.js
