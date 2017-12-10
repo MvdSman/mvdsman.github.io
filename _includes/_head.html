@@ -18,10 +18,7 @@
 
 {% assign title = title | strip_html | escape | strip_newlines %}
 
-{% endcapture %}<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ title }}</title>
-
+{% endcapture %}
 	<!-- Google Tag Manager -->
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -30,11 +27,15 @@
 	})(window,document,'script','dataLayer','GTM-TW9KDQ6');</script>
 	<!-- End Google Tag Manager -->
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ title }}</title>
+
     <link rel="stylesheet" type="text/css" href="{{ url }}/assets/css/styles_feeling_responsive.css">
 
-  {% if site.asciidoctor-enabled == true %}
+  	{% if site.asciidoctor-enabled == true %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css">
-  {% endif %}
+  	{% endif %}
 
 	<script src="{{ url }}/assets/js/modernizr.min.js"></script>
 
