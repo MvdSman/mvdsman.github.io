@@ -1,27 +1,87 @@
+### SITE SETTINGS ====
+
 remote_theme: feeling-responsive
 timezone: Europe/Amsterdam
 title: "R blogtest"
-name: "Mark van der Sman"
+author: mark # see authors.yml
 site.description: "Test environment for showcasing R projects."
-breadcrumbs: true
+url: "https://mvdsman.github.io/"
+credits: '<p>Created with &hearts; by <a href="http://phlow.de/">Phlow</a> with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> based on <a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a>.</p>'
+
+# This URL points directly to the images directory making
+# things easier to link to images in posts and templates. It needs a slash at the end.
+#
+# Example: <img src="{{ site.urlimg }}{{ post.image.title }}" />
+# Markdown-Example for posts ![Image Text]({{ site.urlimg }}image.jpg)
+#
+urlimg: 'https://phlow.github.io/feeling-responsive/images/'
+
+# Logo size is 600x80 pixels
+logo: "logo.png"
+
+# Gems
+gems:
+    - jekyll-asciidoc
+    - jekyll-gist
+    - jekyll-paginate
+
+
+### PAGINATION ====
+
+paginate: 5                      # Paginates all X entries
+paginate_path: "blog/page:num"   # Pagination path › Important for blog page in /blog/ to work
+
+# Theme works best with Kramdown (using the table of contents function)
+markdown: kramdown
 permalink: /:categories/:title/
+highlight: rouge
+excerpt_separator: "<!--more-->"
+include: ['.htaccess']
+# Exclude these files from your production _site
+exclude:
+    - .sass-cache
+    - Gemfile
+    - Gemfile.lock
+    - LICENSE
+    - README.md
+    - INSTALL.md
+
+permalink: /:categories/:title/
+breadcrumbs: true
+
+# The language setting is used in /includes/header.html for html-settings
+language: 'en'
+
+
+### DEFAULT SETTINGS ====
+
 defaults:
-  # _posts
   -
     scope:
-      path: ""
+      path: ""        # an empty string here means all files in the project
       type: "pages"
     values:
-      author: "M. van der Sman"
+      show_meta: false  # Hide metadata for all pages
+      # sidebar:        # Possible values › left, right › by default there will be no sidebar
+      comments: false
+      author: mark     # Default author for pages
   -
     scope:
       path: ""
       type: "posts"
     values:
-      read_time: true # estimated time a post has been read
-head_scripts:
-#  - https://code.jquery.com/jquery-3.2.1.min.js
-#  - /assets/js/custom-head-script.js
+      show_meta: true   # Show metadata for all posts
+      # sidebar:        # Possible values › left, right › by default there will be no sidebar
+      comments: false
+      author: mark     # Default author for posts
 
-#footer_scripts:
-#  - /assets/js/custom-footer-script.js
+
+### NAVIGATION ====
+#  Open _data/navigation.yml to adjust the left and right topbar navigation
+
+
+### SASS ====
+
+sass:
+    sass_dir: _sass
+    style: :compressed
