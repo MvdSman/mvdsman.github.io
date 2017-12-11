@@ -1,7 +1,7 @@
 ---
 layout: page
 subheadline: "R-projects"
-title: "Test post"
+title: "Test project"
 teaser: "Just a simple test post to see if it all works!"
 header:
     image_fullwidth: "header_typewriter.jpg"
