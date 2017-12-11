@@ -1,6 +1,8 @@
 ---
 title: "A website that doesn't exit"
 layout: redirect
+header:
+    image_fullwidth: "header_R.jpg"
 sitemap: false
 permalink: /redirect-page/
 redirect_to:  "http://phlow.github.io/feeling-responsive/info/"
