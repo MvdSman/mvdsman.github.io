@@ -7,8 +7,7 @@
 {% endcomment %}
 
 
-{% for post in paginator.posts %}
-  {% if post.categories.r-projects %}
+{% for post in site.categories.r-projects %}
     <div class="row">
       <div class="small-12 columns b60">
         <p class="subheadline">{{ post.categories | join: ' &middot; ' | prepend: '<span class="subheader">' | append: '</span>' }}{% if post.categories != empty and post.subheadline != NULL %} – {% endif %}{{ post.subheadline }}</p>
@@ -22,23 +21,4 @@
         </p>
       </div><!-- /.small-12.columns -->
     </div><!-- /.row -->
-  {% endif %}
 {% endfor %}
-
-
-<nav id="pagination">
-    {% if paginator.previous_page %}
-      {% if paginator.previous_page == 1 %}
-      <a rel="prev" class="radius button small" href="{{ site.url }}{{ site.baseurl }}/blog/" title="{{ site.data.language.previous_posts }}">&laquo; {{ site.data.language.previous_posts }}</a>
-      {% else %}
-      <a rel="prev" class="radius button small" href="{{ site.url }}{{ site.baseurl }}/blog/page{{ paginator.previous_page }}/" title="{{ site.data.language.previous_posts }}">&laquo; {{ site.data.language.previous }}</a>
-      {% endif %}
-    {% endif %}
-
-    <a class="radius button small" href="{{ site.url }}{{ site.baseurl }}/blog/archive/" title="{{ site.data.language.blog_archive }}">{{ site.data.language.blog_archive }}</a>
-
-    {% if paginator.next_page %}
-    <a rel="next" class="radius button small" href="{{ site.url }}{{ site.baseurl }}/blog/page{{ paginator.next_page }}/" title="{{ site.data.language.next_posts }}">{{ site.data.language.next }} &raquo;</a>
-    {% endif %}
-  </nav>
-
