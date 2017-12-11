@@ -13,6 +13,6 @@ image:
 categories:
     - r-projects
 comments: false
-show_meta: false
+show_meta: true
 ---
 Here should be the main content.
