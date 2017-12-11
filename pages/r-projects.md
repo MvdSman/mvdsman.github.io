@@ -7,11 +7,6 @@ header:
    image_fullwidth: "header_unsplash_5.jpg"
 permalink: "/r-projects/"
 ---
-<ul>
-    {% for post in site.categories.r-projects %}
-    <li><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-</ul>
 
 {% for post in site.categories.r-projects %}
 <div class="row">

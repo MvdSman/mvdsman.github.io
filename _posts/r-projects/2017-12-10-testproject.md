@@ -1,6 +1,6 @@
 ---
 layout: page
-subheadline: "R-projects"
+subheadline: "Project 0"
 title: "Test project"
 teaser: "Just a simple test post to see if it all works!"
 header:
