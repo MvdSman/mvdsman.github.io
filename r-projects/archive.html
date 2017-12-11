@@ -14,7 +14,7 @@ permalink: "r-projects/archive/"
 
 		<dl class="accordion" data-accordion>
 			{% assign counter = 1 %}
-			{% for post in site.posts limit:1000 %}
+			{% for post in site.categories.r-projects limit:1000 %}
 			<dd class="accordion-navigation">
 			<a href="#panel{{ counter }}"><span class="iconfont"></span> {% if post.subheadline %}{{ post.subheadline }} › {% endif %}<strong>{{ post.title }}</strong></a>
 				<div id="panel{{ counter }}" class="content">
