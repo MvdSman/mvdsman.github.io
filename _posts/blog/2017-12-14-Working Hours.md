@@ -7,7 +7,6 @@ header:
     image_fullwidth: "header_R.jpg"
 image:
     thumb:  reddit.png
-    homepage: reddit.png
 categories:
     - blog
 comments: false
@@ -60,7 +59,7 @@ ggplot(data, aes(x=Room, y=Minutes)) +
   ggtitle("Time taken to clean a room","Facetted by the type of clean-up")
 ```
 
-![Time taken to clean a room. Facetted by type of clean-up.]({{ site.urlimg }} R/2017-12-14_Rplot1.jpeg "Boxplot 1")
+![Time taken to clean a room. Facetted by type of clean-up.]({{ site.urlimg }}R/2017-12-14_Rplot1.jpeg "Boxplot 1")
 
 This plot shows a clear difference between the time needed to clean a room upon checkout compared to the time needed for a stay-over. The rooms themselves don't really differ that much from each other.
 
@@ -70,7 +69,7 @@ ggplot(data, aes(x=Cleaning.type, y=Minutes)) +
   ggtitle("Time taken for both types of clean-up")
 ```
 
-![Time taken for both types of clean-up.]({{ site.urlimg }} R/2017-12-14_Rplot2.jpeg "Boxplot 2")
+![Time taken for both types of clean-up.]({{ site.urlimg }}R/2017-12-14_Rplot2.jpeg "Boxplot 2")
 
 When looking at the variable *Cleaning.type*, a clear difference between the two types can be seen. This supports the claims from the first boxplot.
 
@@ -84,7 +83,7 @@ ggplot(data, aes(x=Distance, y=Minutes, group=Cleaning.type, shape=Cleaning.type
   ggtitle("Time taken to clean a room","Grouped by the type of clean-up")
 ```
 
-![Time taken to clean a room.]({{ site.urlimg }} R/2017-12-14_Rplot3.jpeg "Jitterplot")
+![Time taken to clean a room.]({{ site.urlimg }}R/2017-12-14_Rplot3.jpeg "Jitterplot")
 
 This plot shows the same difference in *Cleaning.type* as the boxplots, but in a better sense of dimensionality using the actual distance to a room instead of just the room number. Because the amount of datapoints might not always be as helpful as a cleaner lineplot with error bars, we'll create one of those too!
 
@@ -95,7 +94,7 @@ ggplot(data, aes(x=Distance, y=Minutes, group=Cleaning.type)) +
   ggtitle("Time taken to clean a room","Grouped by the type of clean-up")
 ```
 
-![Time taken to clean a room.]({{ site.urlimg }} R/2017-12-14_Rplot4.jpeg "Jitterplot")
+![Time taken to clean a room.]({{ site.urlimg }}R/2017-12-14_Rplot4.jpeg "Jitterplot")
 
 The errorbars (&#177;1SD) were chosen for a cleaner plot. This plot suggests a clear difference between the two cleaning types. The distance does not, however, show any significant differences in the time measured other than an increase in variance for the longer distances.
 
