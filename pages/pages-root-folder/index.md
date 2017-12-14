@@ -7,11 +7,11 @@
 layout: frontpage
 header:
    image_fullwidth: header_R.jpg
-#widget1:
-#  title: "Blog & Portfolio"
-#  url: 'http://phlow.github.io/feeling-responsive/blog/'
-#  image: widget-1-302x182.jpg
-#  text: 'Every good portfolio website has a blog with fresh news, thoughts and develop&shy;ments of your activities. <em>Feeling Responsive</em> offers you a fully functional blog with an archive page to give readers a quick overview of all your posts.'
+widget1:
+  title: "Blog & Portfolio"
+  url: 'https://mvdsman.github.io/blog/'
+  image: widget-1-302x182.jpg
+  text: 'This site was created to show some of the projects I'm working on and to keep myself on track by trying to analyse different kinds of datasets. More content will follow soon!
 #widget2:
 #  title: "Why use this theme?"
 #  url: 'http://phlow.github.io/feeling-responsive/info/'
@@ -43,7 +43,6 @@ header:
 #
 homepage: true
 ---
-
 <!--
 <div id="videoModal" class="reveal-modal large" data-reveal="">
   <div class="flex-video widescreen vimeo" style="display: block;">
