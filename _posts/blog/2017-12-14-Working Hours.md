@@ -9,7 +9,7 @@ image:
     thumb:  reddit.png
 categories:
     - blog
-comments: false
+comments: true
 show_meta: true
 ---
 
