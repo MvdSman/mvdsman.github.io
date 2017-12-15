@@ -14,7 +14,7 @@ show_meta: true
 ---
 
 Welcome to my first post posted on this site! This will be quite a short one, but I hope it will be the first of many.
-I love visualising interesting, uncommon datasets so please let me know if you have any interesting data laying around!
+I love visualising interesting, uncommon datasets so please [let me know](#disqus_thread) down in the comments if you have any interesting data laying around!
 
 Let's just skip towards the code now, shall we?
 
