@@ -28,6 +28,7 @@ library(dplyr)
 library(tidyr)
 library(data.table)
 library(ggplot2)
+library(corrgram)
 theme_set(theme_bw())
 ```
 
@@ -94,9 +95,18 @@ ggplot(data, aes(x=Distance, y=Minutes, group=Cleaning.type)) +
   ggtitle("Time taken to clean a room","Grouped by the type of clean-up")
 ```
 
-![Time taken to clean a room.]({{ site.urlimg }}R/2017-12-14_Rplot4.jpeg "Jitterplot")
+![Time taken to clean a room.]({{ site.urlimg }}R/2017-12-14_Rplot4.jpeg "Lineplot")
 
 The errorbars (&#177;1SD) were chosen for a cleaner plot. This plot suggests a clear difference between the two cleaning types. The distance does not, however, show any significant differences in the time measured other than an increase in variance for the longer distances.
 
 To say something about the significance of the observations, statistics are obviously required. This time I will not cover that part because I am somewhat limited in time this period.
+I will, however, show a quick correlation table to see how the variables relate to each other.
 
+```r
+corrgram(data, order=FALSE, lower.panel=panel.conf, upper.panel=panel.pts,
+         diag.panel=panel.density, main="Correlation matrix")
+```
+
+![Correlation table of the dataset.]({{ site.urlimg }}R/2017-12-14_Rplot5.jpeg "Corrgram")
+
+The correlation table shows that the average cleaning time per room per type (*Mean_room*) is highly correlated with the average cleaning time per type (*Mean_Type*), indicating that the distance does not influence the cleaning time for a certain type. The low correlation of *Distance* with *Minutes* shows no relation between these two variables: the cleaning time is not influenced by the distance of a room.
