@@ -8,6 +8,7 @@ site.description: "Test environment for showcasing R projects."
 url: "https://mvdsman.github.io"
 disqus_shortname: "personal-r-projects"
 credits: '<p>Based on <a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a> by <a href="http://phlow.de/">Phlow</a> with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a>.</p>'
+githublink: "https://github.com/MvdSman" # repository root
 
 # This URL points directly to the images directory making
 # things easier to link to images in posts and templates. It needs a slash at the end.
