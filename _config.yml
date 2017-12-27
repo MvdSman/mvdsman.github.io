@@ -2,7 +2,7 @@
 
 remote_theme: feeling-responsive
 timezone: Europe/Amsterdam
-title: "R blogtest"
+title: "R blog"
 author: mark # see authors.yml
 site.description: "Test environment for showcasing R projects."
 url: "https://mvdsman.github.io"
