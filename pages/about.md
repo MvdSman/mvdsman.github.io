@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "About"
-subheadline: "Why another Jekyll Theme?"
+subheadline: "From Biology to Bio-Informatics"
 teaser: "I've been interested with visualisations and data analysis for years. Now that I've finished my B.Sc. Biology, I chose the path to being a Bio-Informatician!"
 permalink: "/about/"
 header:
