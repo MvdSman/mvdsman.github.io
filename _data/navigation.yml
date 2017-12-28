@@ -16,6 +16,10 @@
   - title: "Project Archive"
     url: "/r-projects/archive/"
 
+- title: "About"
+  url: "/about/"
+  side: left
+
 - title: "Search"
   url: "/search/"
   side: right
