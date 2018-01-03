@@ -10,11 +10,11 @@
     url: "/blog/archive/"
 
 - title: Projects
-  url: "/r-projects/"
+  url: "/projects/"
   side: left
   dropdown:
   - title: "Project Archive"
-    url: "/r-projects/archive/"
+    url: "/projects/archive/"
 
 - title: "About"
   url: "/about/"
