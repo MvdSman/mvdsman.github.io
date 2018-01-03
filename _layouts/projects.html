@@ -8,7 +8,7 @@ noindex: true
 ---
 <div class="row">
   <div class="medium-12 columns t30">
-    {% for post in site.categories.r-projects %}
+    {% for post in site.categories.projects %}
       <div class="row">
         <div class="small-12 columns b60">
           <p class="subheadline">{{ post.categories | join: ' &middot; ' | prepend: '<span class="subheader">' | append: '</span>' }}{% if post.categories != empty and post.subheadline != NULL %} – {% endif %}{{ post.subheadline }}</p>
