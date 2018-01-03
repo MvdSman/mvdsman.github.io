@@ -11,7 +11,7 @@ image:
     thumb:  typewriter-thumb.jpg
     homepage: homepage_typewriter.jpg
 categories:
-    - r-projects
+    - projects
 comments: false
 show_meta: true
 ---

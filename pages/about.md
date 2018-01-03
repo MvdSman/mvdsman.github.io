@@ -15,11 +15,13 @@ Because I love to do these things, it's easy for me to put a lot of effort in a 
 Especially during the last few years, I tried to develop my skillset doing internships, following some internet courses, doing private projects and of course by chosing the right courses during my Bachelor's degree. I started focusing on R, but it does not limit me to other languages: I like being versatile.
 The most noteworthy languages I'm experienced in are:
 - R
+- Python (in progress)
 - C++
 - HTML
 - CSS
+- Markdown
 
-I also know the basics of Python, PHP and MySQL.
+I also know the basics of PHP and MySQL.
 
 
 ## I got inspired by...
