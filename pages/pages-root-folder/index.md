@@ -10,7 +10,7 @@ header:
 widget1:
   title: "Blog & Portfolio"
   url: '/blog/'
-  text: 'This site was created to show some of the projects I am working on and to keep myself on track by trying to analyse different kinds of datasets. This site will also double as my portfolio in the Projects section. More content will follow soon!'
+  text: 'This site was created to show some of the projects I am working on and to keep myself on track by trying to analyse different kinds of datasets. This site will also double as my portfolio in the [Projects](/projects/) section. More content will follow soon!'
 widget2:
   title: "About me"
   url: '/about/'
