@@ -6,7 +6,7 @@
 {% endcomment %}
 <div id="navigation" class="sticky">
   <nav class="top-bar" role="navigation" data-topbar>
-    <ul class="title-area">
+    <ul class="title-area shadow-black">
       <li class="name">
       <h1 class="show-for-small-only"><a href="{{ site.url }}{{ site.baseurl }}"> {{ site.title }}</a></h1>
     </li>
@@ -24,7 +24,7 @@
         /____/                                 /____/
 
 {% endcomment %}
-      <ul class="right">
+      <ul class="right shadow-black">
         {% for link in site.data.navigation %}
 
               {% if link.url contains 'http' %}
@@ -78,7 +78,7 @@
                                           /____/
 
 {% endcomment %}
-      <ul class="left">
+      <ul class="left shadow-black">
         {% for link in site.data.navigation %}
 
               {% if link.url contains 'http' %}
