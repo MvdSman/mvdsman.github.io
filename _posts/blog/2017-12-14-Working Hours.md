@@ -1,8 +1,8 @@
 ---
 layout: page
 subheadline: "DataViz Request"
-title: "Working Hours"
-teaser: "Reddit request for visualisation of a dataset concerning cleaning times of hotel rooms. [R]"
+title: "Working Hours [R]"
+teaser: "Reddit request for visualisation of a dataset concerning cleaning times of hotel rooms."
 header:
     image_fullwidth: "header_R.jpg"
 image:
