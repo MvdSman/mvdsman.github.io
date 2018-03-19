@@ -10,7 +10,7 @@ image:
 categories:
     - blog
 tags:
-    - blog
+    - Blog
     - C++
     - Computational Molecular Biology
     - Sequence Alignment
