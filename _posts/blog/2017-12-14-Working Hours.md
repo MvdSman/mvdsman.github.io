@@ -2,13 +2,18 @@
 layout: page
 subheadline: "DataViz Request"
 title: "Working Hours"
-teaser: "Reddit request for visualisation of a dataset concerning cleaning times of hotel rooms."
+teaser: "Reddit request for visualisation of a dataset concerning cleaning times of hotel rooms. [R]"
 header:
     image_fullwidth: "header_R.jpg"
 image:
     thumb:  reddit.png
 categories:
     - blog
+tags:
+    - Blog
+    - R
+    - Visualisation
+    - Reddit
 comments: true
 show_meta: true
 ---
