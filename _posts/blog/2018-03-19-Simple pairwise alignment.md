@@ -1,8 +1,8 @@
 ---
 layout: page
 subheadline: "Computational Molecular Biology"
-title: "Sequence alignments [C++]"
-teaser: "Some sequence alignment techniques in C++ using the Needlemann and Wunsch-algorithm"
+title: "Sequence alignment [C++]"
+teaser: "Basic sequence alignment in C++ using the Needlemann and Wunsch-algorithm"
 header:
     image_fullwidth: "header_R.jpg"
 image:
@@ -22,125 +22,50 @@ show_meta: true
 
 ## Introduction
 
-Hello again to another post. My [last post](/blog/Working-Hours/) showed how I took on a Reddit request about the cleaning times of hotel rooms. This time I will show some visualisations on web scraped data and how I acquired it!
+Hello all, after some time I decided to create another post! My [last post](/blog/Poetry/) was about the analysis of 119 scraped poems, finding differences and similarities between different kinds of poems. This time, I will talk you through something more applicable to my own field of study: the basic alignment of two DNA sequences using the Needlemann and Wunsch-algorithm. The reason I chose this subject is because it is my current subject on a course I'm following and I wanted to show what I am doing.
+This is also the first time on this blog that I'll publish C++ code instead of R-script, as this was insisted on by my course supervisor. So please be aware that my code might not be the most optimal approach!
 
-*Please note that I do not have any affiliations with Poetry or any poet/poem shown in this blog.*
+The Needlemann and Wunsch-algorithm could be seen as one of the basic global alignment techniques: it aligns two sequences using a scoring matrix and a traceback matrix, which is based on the prior. Many other, way more complex algorithms have been written since the publication of this algorithm, but it is a good basis for more complicated problems and solutions.
 
-This dataset was chosen because it is my first time analysing words instead of more concrete and consistent factored/categorised data (e.g. genomic data). This specific dataset contains information and the actual text of 119 of the more popular poems found on Poetry. It does appear that the community is not as big as I hoped in the beginning, resulting in quite a small dataset when focusing on the more popular poems. I might redo this analysis with a bigger dataset when given the opportunity.
+*All data (anonymised if applicable), used script and created visualisations can be found in my [GitHub repository]({{ site.githublink }}).*
 
-*All data (anonymised), used script and created visualisations can be found in my [GitHub repository]({{ site.githublink }}).*
+I love visualising interesting, uncommon datasets and working on projects so please [let me know](#disqus_thread) down in the comments if you have any request or interesting data laying around!
 
-I love visualising interesting, uncommon datasets so please [let me know](#disqus_thread) down in the comments if you have any request or interesting data laying around!
+## Needlemann and Wunsch-algorithm
 
-## Web scraping
+I won't go into too much detail on how this algorithm works, but the basics will be covered along the way.
+The principles are: a perfect match on a position on two sequences gives the highest score, mismatches get penalties and gaps are usually penalised using some function that takes into account how long the gap will actually be among multiple positions.
 
-First, I'll show how I web scraped the data. This is still new for me, so some steps might seem a bit off: (positive) feedback is always appreciated.
 
-The used package for web scraping is *rvest*, a quite intuitive package and thus perfect for me. The package *stringr* is used for the text analysis further down.
 
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-library(rvest)
-library(knitr)
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(data.table)
-library(magrittr)
-library(ggplot2)
-```
-  </div>
-</details>
+The actual scoring of this is done using a small matrix in which all possible combinations are given a certain score:
 
-For the acquisition of the data, a custom function was written. This function is task-specific and will differ every time another kind of dataset has to be scraped, hence the effort for readable code. This time, the function took the variable *Poet* and *Poem* as input, making up the second half of the url which is to be scraped.
+|         |  C  |  T  |  A  |  G  |
+|:-------:|:---:|:---:|:---:|:---:|
+|  **C**  |  3  |  1  |  -3 |  -3 |
+|  **T**  |  1  |  3  |  -3 |  -3 |
+|  **A**  |  -3 |  -3 |  3  |  1  |
+|  **G**  |  -3 |  -3 |  1  |  3  |
+
+The reason for the 1 in A-G and C-T matching is because purine-purine (A/G) and pyrimidine-pyrimidine (C/T) mutations are biologically seen more common than other mutations.
+
+The gap penalty will be calculated by the function ```gap_affinity()```, which defines an "affine gap penalty": the initial gap penalty will be higher with every directly following gap receiving a lower penalty. This ensures the algorithm to favor longer gaps over multiple singular gaps, which is also biologically seen more realistic.
 
 <details>
-  <summary class="summary">Toggle R code</summary>
+  <summary class="summary">Toggle C++ code</summary>
   <div markdown="1">
-```r
-Scrape <- function(Poet, Poem){
-  url <- paste(paste0("http://poetry.com/poem/", Poet), Poem, sep="/")
-  
-  # Get the info
-  # Obtain URL, if url found return the data, else "error message"
-  webHTML <- tryCatch({read_html(url)}, error=function(err) "Error")
-  
-  if(length(webHTML)==1 && webHTML=="Error"){
-    message("Error!")
-    return("Error")
-  } 
-  
-  # Get divs with information ====
-  innerNodes <- webHTML %>% html_nodes("article")
-  df_info <- innerNodes %>% html_node(xpath = '//*[@id="content-block"]/div/div/div[1]/article/div[1]') %>% html_nodes("span") %>% html_text("i") # get likes, views and comments
-  df_title <- innerNodes %>% html_node(xpath = '//*[@id="content-block"]/div/div/div[1]/article/div[2]/h1') %>% html_text("h1") # get poem title
-  df_text <- innerNodes %>% html_node(xpath = '//*[@id="content-block"]/div/div/div[1]/article/div[2]/div[2]') %>% html_nodes("p") #%>% html_text(trim=TRUE) # get poem text
-  df_cat <- innerNodes %>% html_node(xpath = '//*[@id="content-block"]/div/div/div[1]/article/div[2]/span/p/a') %>% html_text() # get poem category
-  df_tags <- innerNodes %>% html_node(xpath = '//*[@id="content-block"]/div/div/div[1]/article/div[3]/div') %>% html_nodes("a") %>% html_text() # get poem tags
+```cpp
+int gap_affinity (int gap, int gap_ext, int& length){
+    int gap_aff = gap + (gap_ext * length);
 
-  # Get amount of tags per poem
-  df_ntags <- length(df_tags)
-  if (length(df_tags)==0){
-    df_tags <- NA
-  }
-
-  # Clean poem text ====
-  # First, replace all <br/> tags with '\n'
-  xml_find_all(df_text, ".//br") %>% xml_add_sibling("p", "\n")
-  xml_find_all(df_text, ".//br") %>% xml_remove()
-
-  # Get the actual poem
-  df_text <- html_text(df_text)
-  df_text <- paste0(df_text, collapse = " ")
-
-  # Fix line breaks and certain special characters
-  df_text <- gsub("\n", " ", df_text)
-  df_text <- gsub(",||&||;", "", df_text)
-
-  # Split the text in seperate words
-  df_texts <- strsplit(df_text, split = " ")
-  df_texts2 <- as.list(str_trim(unlist(df_texts))) # remove leading and lagging spaces from elements
-  df_texts3 <- unlist(df_texts2[df_texts2!=""]) # unlist the text and filter empty elements
-  
-  # Compose dataset ====
-  temp <- data.frame(Category=df_cat,Title=df_title,Text=paste0(df_texts3, collapse = " "),Words=length(df_texts3),Likes=df_info[[1]],Views=df_info[[2]],Comments=df_info[[3]],Tags=df_tags,nTags=df_ntags)
-  
-  return(temp)
+    return gap_aff;
 }
 ```
   </div>
 </details>
 
-An example of how this function could be called is like this:
 
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-# Create the input list ====
-input <- list()
-input[["poet1"]] <- c("poem1","poem2","poem3","poem4","poem5")
-input[["poet2"]] <- "poem"
 
-# Web scraping ====
-# Store data
-df <- NULL
-
-# Scrape data
-for (i in names(input)){
-  print(i) # follow progress of poets throughout function
-  for (j in 1:length(input[[i]])){
-    k <- input[[i]][j]
-    print(k) # follow progress of poems throughout function
-    x <- Scrape(i,k)
-    df <- bind_rows(df,x)
-  }
-}
-```
-  </div>
-</details>
 
 ## Data analysis
 
