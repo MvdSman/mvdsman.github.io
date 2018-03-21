@@ -2,7 +2,7 @@
 layout: page
 subheadline: "Computational Molecular Biology"
 title: "Sequence alignment [C++]"
-teaser: "Basic sequence alignment in C++ using the Needleman and Wunsch-algorithm"
+teaser: "Basic sequence alignment in C++ using the Needleman and Wunsch-algorithm."
 header:
     image_fullwidth: "header_R.jpg"
 image:
