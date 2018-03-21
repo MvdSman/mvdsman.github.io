@@ -2,11 +2,11 @@
 layout: page
 subheadline: "Computational Molecular Biology"
 title: "Sequence alignment [C++]"
-teaser: "Basic sequence alignment in C++ using the Needlemann and Wunsch-algorithm"
+teaser: "Basic sequence alignment in C++ using the Needleman and Wunsch-algorithm"
 header:
     image_fullwidth: "header_R.jpg"
 image:
-    thumb:  needlemannwunsch.png
+    thumb:  needlemanwunsch.png
 categories:
     - blog
 tags:
@@ -22,21 +22,24 @@ show_meta: true
 
 ## Introduction
 
-Hello all, after some time I decided to create another post! My [last post](/blog/Poetry/) was about the analysis of 119 scraped poems, finding differences and similarities between different kinds of poems. This time, I will talk you through something more applicable to my own field of study: the basic alignment of two DNA sequences using the Needlemann and Wunsch-algorithm. The reason I chose this subject is because it is my current subject on a course I'm following and I wanted to show what I am doing.
+Hello all, after some time I decided to create another post! My [last post](/blog/Poetry/) was about the analysis of 119 scraped poems, finding differences and similarities between different kinds of poems. This time, I will talk you through something more applicable to my own field of study: the basic alignment of two DNA sequences using the Needleman and Wunsch-algorithm. The reason I chose this subject is because it is my current subject on a course I'm following and I wanted to show what I am doing.
 This is also the first time on this blog that I'll publish C++ code instead of R-script, as this was insisted on by my course supervisor. So please be aware that my code might not be the most optimal approach!
 
-The Needlemann and Wunsch-algorithm could be seen as one of the basic global alignment techniques: it aligns two sequences using a scoring matrix and a traceback matrix, which is based on the prior. Many other, way more complex algorithms have been written since the publication of this algorithm, but it is a good basis for more complicated problems and solutions.
+The Needleman and Wunsch-algorithm could be seen as one of the basic global alignment techniques: it aligns two sequences using a scoring matrix and a traceback matrix, which is based on the prior. Many other, way more complex algorithms have been written since the publication of this algorithm, but it is a good basis for more complicated problems and solutions.
 
 *All data (anonymised if applicable), used script and created visualisations can be found in my [GitHub repository]({{ site.githublink }}).*
 
 I love visualising interesting, uncommon datasets and working on projects so please [let me know](#disqus_thread) down in the comments if you have any request or interesting data laying around!
 
-## Needlemann and Wunsch-algorithm
+## Needleman and Wunsch-algorithm
 
 I won't go into too much detail on how this algorithm works, but the basics will be covered along the way.
 The principles are: a perfect match on a position on two sequences gives the highest score, mismatches get penalties and gaps are usually penalised using some function that takes into account how long the gap will actually be among multiple positions.
 
+[![Figure not found!](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png "Needleman-Wunsch pairwise sequence alignment. By Slowkow - Own work, CC0, https://commons.wikimedia.org/w/index.php?curid=31963972.")](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png){:target="_blank"}
 
+
+## 
 
 The actual scoring of this is done using a small matrix in which all possible combinations are given a certain score:
 
@@ -64,305 +67,3 @@ int gap_affinity (int gap, int gap_ext, int& length){
   </div>
 </details>
 
-
-
-
-## Data analysis
-
-To access the dataset used in this analysis, see my [GitHub repository]({{ site.githublink }}).
-
-### Exploring the data
-
-When summarising the dataset, it can be clearly be seen that the data is **not** normally distributed amongst the different categories:
-
-|  Free Verse  |  Inspirational  |  Love  |  NA  |  Other  |  Rap  |  Rhyme  |  Slam Poetry  |  Spoken Word  |
-|:------------:|:---------------:|:------:|:----:|:-------:|:-----:|:-------:|:-------------:|:-------------:|
-|      15      |        16       |   36   |  7   |    27   |   1   |   14    |       1       |        2      |
-
-This suggests that it might be necessary to gather more data if I would like to say something statistically significant about the data when basing the observations on the difference in category.
-
-First off, the dataset was explored by simply looking at how certain values (e.g. *Views* or *Likes*) changed when grouping the values per category. The boxplots have variable width based on the amount of data they represent. This gives a good indication of the usefulness of a certain category.
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-df_single <- df[-8] %>% filter(!duplicated(Title)) # filter for non-duplicates
-
-# Remove extreme outliers
-upper.fence <- quantile(df_single$Views)[4] + 1.5*IQR(df_single$Views)
-lower.fence <- quantile(df_single$Views)[2] - 1.5*IQR(df_single$Views)
-
-ggplot(df_single, aes(x = Category, y = Views)) +
-  geom_boxplot(outlier.colour = NA, varwidth = TRUE) +
-  coord_cartesian(ylim = c(lower.fence, upper.fence)) +
-  ggtitle("Views per poem category")
-```
-  </div>
-</details>
-
-[![Figure not found!](/images/R/2017-12-27_Rplot1.jpeg "Views per poem category")](/images/R/2017-12-27_Rplot1.jpeg){:target="_blank"}
-
-It is interesting to see that most of the well-represented categories are quite similar in the amount of views they get per poem. Rhyme appears to be less popular to the community though.
-You can also see that the categories "Love" and "Other" are most represented in this dataset.
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-ggplot(df_single, aes(x = Category, y = Comments)) +
-  geom_boxplot(varwidth = TRUE) +
-  ggtitle("Comments per poem category")
-```
-  </div>
-</details>
-
-[![Figure not found!](/images/R/2017-12-27_Rplot2.jpeg "Comments per poem category")](/images/R/2017-12-27_Rplot2.jpeg){:target="_blank"}
-
-These boxplots show small differences between the categories. It seems you should be happy if you have more than five comments on your poem.
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-ggplot(df_single, aes(x = Category, y = Likes)) +
-  geom_boxplot(varwidth = TRUE) +
-  ggtitle("Likes per poem category")
-```
-  </div>
-</details>
-
-[![Figure not found!](/images/R/2017-12-27_Rplot3.jpeg "Likes per poem category")](/images/R/2017-12-27_Rplot3.jpeg){:target="_blank"}
-
-As for the likes, no big differences can be seen on first sight: an average of 2-3 likes per post seems to be the standard.
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-ggplot(df_single, aes(x = Category, y = Words)) +
-  geom_boxplot(varwidth = TRUE) +
-  ggtitle("Words per poem category")
-```
-  </div>
-</details>
-
-[![Figure not found!](/images/R/2017-12-27_Rplot4.jpeg "Words per poem category")](/images/R/2017-12-27_Rplot4.jpeg){:target="_blank"}
-
-To see if the actual length of poems differed per category, the amount of words were plotted. It can be clearly seen that the poems with no category assigned are somehow around twice the size of the rest of the poems. Rhymes seem to have a more consistent length compared to the other well-represented categories, probably because these ususally follow a more stricter scheme.
-
-### Searching correlations
-
-What if the amount of words would somehow influence the amount of views or the amount of comments might correlate with the amount of likes? Let's see...
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-ggplot(df_single %>% filter(Views < 2000), aes(x = Words, y = Views)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  ggtitle("Amount of views per no. of words")
-```
-  </div>
-</details>
-
-[![Figure not found!](/images/R/2017-12-27_Rplot5.jpeg "Amount of views per no. of words")](/images/R/2017-12-27_Rplot5.jpeg){:target="_blank"}
-
-One might suspect that a very long poem might not get as many views as an easier and quicker-to-read poem. There is, however, a slight increase visible when looking at the linear smooth. Personally, I wouldn't think too much of this because of the big scattering of datapoints, the small slope and the lack of a big dataset.
-
-*Note that some outliers above the 2000 views are filtered out for a closer look on the rest of the data.*
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-ggplot(df_single, aes(x = Comments, y = Likes)) +
-  geom_hex() + # a lot of overlapping datapoints
-  ggtitle("Likes per no. of comments")
-```
-  </div>
-</details>
-
-[![Figure not found!](/images/R/2017-12-27_Rplot6.jpeg "Likes per no. of comments")](/images/R/2017-12-27_Rplot6.jpeg){:target="_blank"}
-
-Because there are a lot of overlapping datapoints when creating a scatterplot, `geom_hex()` was chosen instead. This bins the overlapping datapoints, resulting in a more insightful visualisation. Likes and comments do show some correlation, which is quite straight-forward: someone who commented on a poem has probably also liked the poem. This can also be seen from this plot.
-There does seem to be a hotspot in the lower-left corner, which can also be explained: the amount of interaction of a community is mostly fairly stable. only a small portion will actually get a lot of comments and likes.
-
-### Analysing the texts of the poems
-
-Now that we have looked at the more overall picture, it's time to delve more into the details, specifically the structure of the poems. For this, I used the basic [TF-IDF score](http://tfidf.com/). This forms the basis for a lot of advanced algorithms like the ones used for search engines to determine the likelyhood that a website fits the entered search query.
-
-The TF-IDF score basically indicates how important a word is to a document in a collection. This is done by dividing the Term Frequency by the Inverse Document Frequency (Term Importance).
-I made a custom function `tfidf()` which gives a score for the term per poem compared to the other poems. It is also possible to specify if the term has to be exclusively that term or if the term can be part of a bigger word.
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-tfidf <- function(term, texts, contains){
-  # contains: whether a word may contain the term of if the term should be exclusive
-
-  n_texts <- length(texts)
-  if (!is.list(texts)){
-    warning("Convert texts to list before running this function")
-    return(NA)
-  }
-  if (n_texts<2){
-    warning("At least two texts are needed for this function")
-    return(NA)
-  }
-  
-  # Retain only alnum characters
-  texts_e <- texts
-  for (i in 1:n_texts){
-    texts_e[i] <- str_to_lower(str_trim(texts_e[i])) # convert to lower-case only
-    texts_e[i] <- as.character(texts_e[i]) %>% strsplit(texts_e[i], split = "[[:space:]]") # splits sentences to words
-    texts_e[[i]] <- str_replace_all(texts_e[[i]], "[[:punct:]]", "") # replaces punctuation by empty elements
-    texts_e[[i]] <- texts_e[[i]][texts_e[[i]] != ""] # removes empty elements
-  }
-  
-  # Get Term Frequency and Inverse Document Frequency per document
-  TF <- list() # initialisation
-  hits = 0 # count amount of texts with at least one term hit
-  for (i in 1:n_texts){
-    TF[i] <- ifelse(contains==TRUE, length(grep(term, texts_e[[i]], ignore.case = TRUE)), length(grep(paste0("\\<",paste0(term,"\\>")), texts_e[[i]], ignore.case = TRUE)))
-    if (TF[i]!=0) {
-      hits = hits + 1
-    }
-  }
-  #message(paste0("Texts with at least one hit on term: ", hits)) # some diagnostics
-  IDF = log10(as.double(n_texts/hits))
-  #message(paste0("IDF found: ", IDF)) # some diagnostics
-  
-  # Get the TF-IDF weight per text
-  TFIDF <- list()
-  for (i in 1:n_texts){
-    TFIDF[i] <- as.double(TF[[i]]*IDF)
-  }
-  
-  return(TFIDF)
-}
-```
-  </div>
-</details>
-
-When deciding what terms might be interesting to analyse, a summary of the words can be made:
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-# Get the texts
-texts <- as.list(df_single$Text)
-df_single$Category <- as.character(df_single$Category)
-df_single$Category[is.na(df_single$Category)] <- "NA"
-df_single$Category <- as.factor(df_single$Category)
-
-# Analyse occurence of each word
-## Retain only alnum characters
-words <- texts
-n_texts <- length(texts)
-for (i in 1:n_texts){
-  words[i] <- str_to_lower(str_trim(words[i])) # convert to lower-case only
-  words[i] <- as.character(words[i]) %>% strsplit(words[i], split = "[[:space:]]") # splits sentences to words
-  words[[i]] <- str_replace_all(words[[i]], "[[:punct:]]", "") # replaces punctuation by empty elements
-  words[[i]] <- words[[i]][words[[i]] != ""] # removes empty elements
-}
-
-## Count seperate words
-words <- unlist(words)
-df_counts <- data.frame(Word = str_to_lower(unlist(words)))
-df_counts$Word <- as.character(df_counts$Word)
-df_counts <- df_counts %>% count(Word) %>% arrange(desc(n))
-```
-  </div>
-</details>
-
-This gives you a table with simply the count of each word in the entire dataset. After selecting some terms, the tfidf-function can be called:
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-# Get TFIDF values
-life_ex <- tfidf("life", texts, FALSE)
-life_inc <- tfidf("life", texts, TRUE)
-love_ex <- tfidf("love", texts, FALSE)
-love_inc <- tfidf("love", texts, TRUE)
-heart_ex <- tfidf("heart", texts, FALSE)
-heart_inc <- tfidf("heart", texts, TRUE)
-her_ex <- tfidf("her", texts, FALSE)
-her_inc <- tfidf("her", texts, TRUE)
-feel_ex <- tfidf("feel", texts, FALSE)
-feel_inc <- tfidf("feel", texts, TRUE)
-never_ex <- tfidf("never", texts, FALSE)
-never_inc <- tfidf("never", texts, TRUE)
-tears_ex <- tfidf("tears", texts, FALSE)
-tears_inc <- tfidf("tears", texts, TRUE)
-df_tfidf <- df_single %>% mutate(life_ex=unlist(life_ex),
-                                 life_inc=unlist(life_inc),
-                                 love_ex=unlist(love_ex),
-                                 love_inc=unlist(love_inc),
-                                 heart_ex=unlist(heart_ex),
-                                 heart_inc=unlist(heart_inc),
-                                 her_ex=unlist(her_ex),
-                                 her_inc=unlist(her_inc),
-                                 feel_ex=unlist(feel_ex),
-                                 feel_inc=unlist(feel_inc),
-                                 never_ex=unlist(never_ex),
-                                 never_inc=unlist(never_inc),
-                                 tears_ex=unlist(tears_ex),
-                                 tears_inc=unlist(tears_inc))
-
-# Convert the values to a actionable dataset
-cormat <- df_tfidf[c(1,4,9:22)] %>% arrange(Category)
-cormat_gathered <- gather(cormat, "Category")
-setnames(cormat_gathered,c("Category","Type","Value"))
-
-# Add some summary values
-cormat_sum <- cormat_gathered %>% group_by(Category, Type) %>% mutate(Median = median(Value), Mean = mean(Value), Third = quantile(Value)[4], Max = max(Value), dThMed = quantile(Value)[4]-median(Value))
-cormat_sum$Value <- NULL
-cormat_sum <- as.data.frame(cormat_sum)
-cormat_sum$Type <- as.factor(cormat_sum$Type)
-cormat_sum <- cormat_sum %>% distinct()
-cormat_sum_gathered <- gather(cormat_sum, "Category", "Type")
-setnames(cormat_sum_gathered, c("Category", "Type", "Measurement", "Value"))
-```
-  </div>
-</details>
-
-Now, the time has come to visualise this in a interpretable manner. I chose for two approaches:
-- Global visualisation showing each term (inclusive and exclusive) facetted per category. Selecting the *Third* measurement shows the TF-IDF values for the bottom 75% of the values per category.
-- Local visualisation showing the distribution of all TF-IDF-values of all poems for a chosen term across the categories.
-
-<details>
-  <summary class="summary">Toggle R code</summary>
-  <div markdown="1">
-```r
-ggplot(cormat_sum_gathered %>% filter(Type != "Words" & Measurement == "Third"), aes(x = Type, y = Value)) +
-  geom_col(position = "dodge", width = 0.5) +
-  coord_flip() +
-  facet_grid(~Category) +
-  ggtitle("Global visualisation: bottom 75% TF-IDF scores per category")
-
-ggplot(df_tfidf, aes(x = Category, y = love_ex)) +
-  geom_boxplot(varwidth = TRUE) +
-  ggtitle("TF-IDF score of the word 'love' (exclusive)")
-```
-  </div>
-</details>
-
-[![Figure not found!](/images/R/2017-12-27_Rplot7.jpeg "Global visualisation: bottom 75% TF-IDF scores per category")](/images/R/2017-12-27_Rplot7.jpeg){:target="_blank"}
-
-The global visualisation gives some interesting results:
-1. Some more prominent words only appear in a few categories ('her' occurs 76x and is almost exclusively used in Rhyme with an extremely high importance).
-2. 'Love', as might be expected, has quite a high importance in the Love category, but is at least twice as low as in uncategorised poems. Would most uncategorised poems be about love?
-3. 'Life' is most important in inspirational poems.
-
-[![Figure not found!](/images/R/2017-12-27_Rplot8.jpeg "TF-IDF score of the word 'love' (exclusive)")](/images/R/2017-12-27_Rplot8.jpeg){: target="_blank"}
-
-What does the local visualisation tell us? The word 'Love' is mostly important in love poems, but somehow uncategorised poems have a mean TF-IDF twice as big as the mean for love poems. Knowing from the data exploration that the uncategorised poems also have about twice the amount of words in a average poem, this is rather special: love has a big role in most uncategorised poems.
-
-This was my first try on visualising data that included a incosistent text-based variable. The TF-IDF seemed to do his job quite well, but a bigger dataset would be needed for a more in-depth analysis.
-I hope you enjoyed it and 'till next time!
