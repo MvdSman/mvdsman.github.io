@@ -39,7 +39,7 @@ The principles are: a perfect match on a position on two sequences gives the hig
 [![Figure not found!](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png "Needleman-Wunsch pairwise sequence alignment. By Slowkow - Own work, CC0, https://commons.wikimedia.org/w/index.php?curid=31963972.")](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png){:target="_blank"}
 
 
-## 
+## Writing the algorithm
 
 The actual scoring of this is done using a small matrix in which all possible combinations are given a certain score:
 
