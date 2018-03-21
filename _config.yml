@@ -26,11 +26,6 @@ gems:
     - jekyll-asciidoc
     - jekyll-gist
     - jekyll-paginate
-    - jekyll-feed
-
-# Plugins
-plugins:
-    - jekyll-feed
 
 ### PAGINATION ====
 
