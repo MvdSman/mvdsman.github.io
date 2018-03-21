@@ -27,6 +27,9 @@ gems:
     - jekyll-gist
     - jekyll-paginate
 
+# Plugins
+plugins:
+    - jekyll-feed
 
 ### PAGINATION ====
 
