@@ -6,7 +6,7 @@ teaser: "Basic sequence alignment in C++ using the Needleman and Wunsch-algorith
 header:
     image_fullwidth: "header_R.jpg"
 image:
-    thumb:  needlemanwunsch.png
+    thumb:  Needleman-Wunsch_PW.png
 categories:
     - blog
 tags:
