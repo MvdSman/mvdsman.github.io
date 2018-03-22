@@ -335,6 +335,7 @@ void  init (int** M, char** M_tb, int A_n, int B_n, int gap, int gap_ext){
 <details>
   <summary class="summary">Toggle C++ code</summary>
   <div markdown="1">
+  {% raw %}
 ```cpp
 // Needleman and Wunsch algorithm
 int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B_al, int A_n, int B_n, int gap, int gap_ext){
@@ -413,7 +414,8 @@ int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B
     return  0 ;
 }
 ```
-  </div>
+  {% endraw %}
+  </div>
 </details>
 
 The ```init()``` function already creates the first column and row, filling them with a hardcoded affine gap function. The traceback matrix automatically gets a "-" or "|", indicitating a step left or up respectively (both gaps, but in either B or A).
