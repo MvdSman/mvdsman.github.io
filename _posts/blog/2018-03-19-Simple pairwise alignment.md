@@ -39,7 +39,6 @@ The principles are: a perfect match on a position on two sequences gives the hig
 [![Figure not found!](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png)](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png){:target="_blank" .image-wrapper}
     
 <p class = "image-caption">Needleman-Wunsch pairwise sequence alignment. <a href="https://commons.wikimedia.org/w/index.php?curid=31963972">By Slowkow - Own work, CC0</a></p>
-</div>
 
 ## Writing the algorithm
 
