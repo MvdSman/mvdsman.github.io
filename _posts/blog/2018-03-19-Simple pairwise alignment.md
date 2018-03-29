@@ -36,6 +36,12 @@ I love visualising interesting, uncommon datasets and working on projects so ple
 I won't go into too much detail on how this algorithm works, but the basics will be covered along the way.
 The principles are: a perfect match on a position on two sequences gives the highest score, mismatches get penalties and gaps are usually penalised using some function that takes into account how long the gap will actually be among multiple positions.
 
+{% include image.html
+    img="/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png"
+    title="Needleman-Wunsch pairwise sequence alignment"
+    caption="Needleman-Wunsch pairwise sequence alignment. By Slowkow - Own work, CC0, https://commons.wikimedia.org/w/index.php?curid=31963972."
+%}
+            
 [![Figure not found!](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png "Needleman-Wunsch pairwise sequence alignment. By Slowkow - Own work, CC0, https://commons.wikimedia.org/w/index.php?curid=31963972.")](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png){:target="_blank"}
 
 
