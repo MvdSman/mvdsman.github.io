@@ -314,8 +314,7 @@ int** NW (string A, string B, string& A_al, string& B_al, int A_n, int B_n, int 
   </div>
 </details>
 
-First, the required matrices are created and then initialised by ```init()```. The horizontal axis will cover sequence A and the vertical axis sequence B. The execution time is being calculated for evaluation purposes. The alignment is made by the function ```alignment()```, which also takes the gap penalty as variable to feed into the affine gap function. After the calculations, the matrices and alignment are optionally printed and the results are exported together with the used parameters. Some print/export operations are not written in a seperate function and the reason is quite simple: I sadly didn't have the time to convert them in a function.
-Below are the two functions described above:
+First, the required matrices are created and then initialised by ```init()```. The horizontal axis will cover sequence A and the vertical axis sequence B. The execution time is being calculated for evaluation purposes. 
 
 <details>
   <summary class="summary">Toggle C++ code</summary>
@@ -340,6 +339,8 @@ void  init (int** M, char** M_tb, int A_n, int B_n, int gap, int gap_ext){
 ```
   </div>
 </details>
+
+The alignment is made by the function ```alignment()```, which also takes the gap penalty as variable to feed into the affine gap function. After the calculations, the matrices and alignment are optionally printed and the results are exported together with the used parameters. Some print/export operations are not written in a seperate function and the reason is quite simple: I sadly didn't have the time to convert them in a function.
 
 <details>
   <summary class="summary">Toggle C++ code</summary>
