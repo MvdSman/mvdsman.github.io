@@ -7,7 +7,7 @@ header:
     image_fullwidth: "header_R.jpg"
 image:
     thumb: Needleman-Wunsch_PW.png
-    title: Needleman-Wunsch_PW.png
+    homepage: Needleman-Wunsch_PW.png
 categories:
     - blog
 tags:
