@@ -419,6 +419,7 @@ int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B
 }
 ```
   {% endraw %}
+  
   </div>
 </details>
 
