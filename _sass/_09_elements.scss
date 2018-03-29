@@ -176,6 +176,8 @@ img.lazy {
 
 .image-wrapper {
     text-align: center;
+    margin: 0 auto;
+    display: block;
     .image-caption {
         color: $grey-5;
     }
