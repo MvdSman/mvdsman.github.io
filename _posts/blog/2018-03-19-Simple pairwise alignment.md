@@ -344,7 +344,6 @@ void  init (int** M, char** M_tb, int A_n, int B_n, int gap, int gap_ext){
 <details>
   <summary class="summary">Toggle C++ code</summary>
   <div markdown="1">
-  {% raw %}
 ```cpp
 // Needleman and Wunsch algorithm
 int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B_al, int A_n, int B_n, int a, int b, int c, int gap, int gap_ext){
@@ -355,10 +354,10 @@ int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B
     int length = 0; // initial gap length
 
     // create substitution scoring matrix
-    const int  s[4][4] =   {{ a, b, c, c },
+    const int  s[4][4] =   { { a, b, c, c },
                             { b, a, c, c },
                             { c, c, a, b },
-                            { c, c, b, a }};
+                            { c, c, b, a } };
 
     for( i = 1; i <= B_n; i++ ){
         for( j = 1; j <= A_n; j++ ){
@@ -417,9 +416,7 @@ int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B
 
     return  0 ;
 }
-```
-  {% endraw %}
-  
+```  
   </div>
 </details>
 
