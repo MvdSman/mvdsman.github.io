@@ -11,7 +11,6 @@
 - Accordion
 - Lazy Load XT
 - Frontpage Widget
-- Image with caption
 
 */
 
@@ -166,16 +165,4 @@ img.lazy {
 .summary:hover {
   font-weight: bold;
   box-shadow: 0px -2px 10px 1px;
-}
-
-/* Image with caption
-------------------------------------------------------------------- */
-
-.image-wrapper {
-    text-align: center;
-
-    .image-caption {
-        color: $grey-color;
-        margin-top: $spacing-unit / 3;
-    }
 }
