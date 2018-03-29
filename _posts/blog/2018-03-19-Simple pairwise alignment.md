@@ -23,9 +23,9 @@ show_meta: true
 ## Introduction
 
 Hello all, after some time I decided to create another post! My [last post](/blog/Poetry/) was about the analysis of 119 scraped poems, finding differences and similarities between different kinds of poems. This time, I will talk you through something more applicable to my own field of study: the basic alignment of two DNA sequences using the Needleman and Wunsch-algorithm. The reason I chose this subject is because it is my current subject on a course I'm following and I wanted to show what I am doing.
-This is also the first time on this blog that I'll publish C++ code instead of R-script, as this was insisted on by my course supervisor. So please be aware that my code might not be the most optimal approach!
+This is also the first time on this blog that I'll publish C++ code instead of R-script, as this was insisted on by my course supervisor.
 
-The Needleman and Wunsch-algorithm could be seen as one of the basic global alignment techniques: it aligns two sequences using a scoring matrix and a traceback matrix, which is based on the prior. Many other, way more complex algorithms have been written since the publication of this algorithm, but it is a good basis for more complicated problems and solutions. The code that I wrote is based on the script found on [this site](http://www.rolfmuertter.com/code/nw.php).
+The Needleman and Wunsch-algorithm could be seen as one of the basic global alignment techniques: it aligns two sequences using a scoring matrix and a traceback matrix, which is based on the prior. Many other, way more complex algorithms have been written since the publication of this algorithm, but it is a good basis for more complicated problems and solutions. The code that I wrote is based on the script found on [this site](http://www.rolfmuertter.com/code/nw.php). Some parts of it will remain mostly unchanged.
 
 *All data (anonymised if applicable), used script and created visualisations can be found in my [GitHub repository]({{ site.githublink }}).*
 
@@ -66,12 +66,12 @@ First things first, we'll determine the scoring method that will be used. This w
 
 |         |  C  |  T  |  A  |  G  |
 |:-------:|:---:|:---:|:---:|:---:|
-|  **C**  |  3  |  1  |  -3 |  -3 |
-|  **T**  |  1  |  3  |  -3 |  -3 |
-|  **A**  |  -3 |  -3 |  3  |  1  |
-|  **G**  |  -3 |  -3 |  1  |  3  |
+|  **C**  |  5  |  -2 |  -5 |  -5 |
+|  **T**  |  -2 |  5  |  -5 |  -5 |
+|  **A**  |  -5 |  -5 |  5  |  -2 |
+|  **G**  |  -5 |  -5 |  -2 |  5  |
 
-The reason for the 1 in A-G and C-T matching is because purine-purine (A/G) and pyrimidine-pyrimidine (C/T) mutations are biologically seen more common than other mutations.
+The reason for the -2 in A-G and C-T matching is because purine-purine (A/G) and pyrimidine-pyrimidine (C/T) mutations are biologically seen more common than other mutations. In combination with the affine gap function, the algorithm might prefer a longer gap over a gap interrupted by one of these mutations.
 
 The gap penalty will be calculated by the function ```gap_affinity()```, which defines an "affine gap penalty": the initial gap penalty will be higher with every directly following gap receiving a lower penalty. This ensures the algorithm to favor longer gaps over multiple singular gaps, which is also biologically seen more realistic.
 
@@ -477,4 +477,4 @@ void  print_tb (char** M_tb, string A, string B, int A_n, int B_n){
   </div>
 </details>
 
-This concludes all the necessary code for this script. The choice to export your files and time the execution duration is yours and the code for this is easily rewritten/deleted!
+This concludes all the necessary code for this script. The choice to export your files and time the execution duration is yours and the code for this is easily rewritten/deleted! This script can only be used for pairwise alignments, but stay tuned for an adaption of this script for a Multiple Sequence Alignment (MSA)!
