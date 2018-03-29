@@ -7,7 +7,7 @@ permalink: "/about/"
 header:
     image_fullwidth: "header_R.jpg"
 ---
-Because I love to do these things, it's easy for me to put a lot of effort in a project and try and get the most out of it. I'm a keen learner and have at least a basic level of experience in multiple [languages](#Skillset).
+Because I love to do these things, it's easy for me to put a lot of effort in a project and try and get the most out of it. I'm a keen learner and have at least a basic level of experience in multiple languages.
 
 
 ## Skillset
