@@ -1,8 +1,8 @@
 ---
 layout: page
 title: "About"
-subheadline: "From Biology to Bio-Informatics"
-teaser: "I've been interested with visualisations and data analysis for years. Now that I've finished my B.Sc. Biology, I chose the path to being a bio-informatician!"
+subheadline: "From Biology to Bioinformatics"
+teaser: "I've been interested with visualisations and data analysis for years. Now that I've finished my B.Sc. Biology, I chose the path to being a bioinformatician!"
 permalink: "/about/"
 header:
     image_fullwidth: "header_R.jpg"
@@ -28,4 +28,4 @@ Data visualisation is where my heart lies, so I hope to get involved in that par
 
 ## I got inspired by...
 
-Most of the times I got inspired by researchers talking about their own research. I noticed a huge difference in the way biologists and bio-informaticians try to communicate their findings: especially the visualisations were noticibly different. I started asking myself how I would approach these tasks myself and became more and more intrigued by the possibilities in the analysis and visualisation of the data. Together with my old interests in informatics, it was a no-brainer for me to start preparing for a switch to bio-informatics. The minor Data Science brought me in touch with different methods to handle and analyse data, which made my choice for a M.Sc. in Bio-informatics definite.
+Most of the times I got inspired by researchers talking about their own research. I noticed a huge difference in the way biologists and bio-informaticians try to communicate their findings: especially the visualisations were noticibly different. I started asking myself how I would approach these tasks myself and became more and more intrigued by the possibilities in the analysis and visualisation of the data. Together with my old interests in informatics, it was a no-brainer for me to start preparing for a switch to bioinformatics. The minor Data Science brought me in touch with different methods to handle and analyse data, which made my choice for a M.Sc. in Bioinformatics definite.
