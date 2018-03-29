@@ -320,7 +320,11 @@ body.video cite { color: #fff; }
     margin-bottom: 10px !important;
 
 // Beware of SCSS-Syntax here
-  li {
+  ul {
+    text-align: center;
+  }
+  ul li {
+    display: inline-block;
     padding: 0 0 20px 0;
   }
   a {
