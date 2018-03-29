@@ -174,7 +174,7 @@ img.lazy {
 /* Image with caption
 ------------------------------------------------------------------- */
 
-img[src*='#center'] { 
+.image-wrapper { 
     display: block;
     margin: auto;
 }
