@@ -350,6 +350,8 @@ void  init (int** M, char** M_tb, int A_n, int B_n, int gap, int gap_ext){
   </div>
 </details>
 
+### Aligning the sequences
+
 The alignment is made by the function ```alignment()```, which also takes the gap penalty as variable to feed into the affine gap function. First, the algorithm scores all possible alignment possibilities in the scoring matrix using the substitution scoring matrix. Secondly, the traceback matrix is created, based on the scoring matrix: From the lower-right corner, the highest scoring cell directly above, diagonally left or left indicates the next step in the alignment up to the upper left corner. This will lead to the final, most optimal global alignment. Lastly, the traceback matrix is used to create the *backward* alignments: it follows the traceback along the highest scoring cells from the lower-right corner to the upper-right corner, introducing gaps in sequence A or B when not going diagonal.
 
 <details>
