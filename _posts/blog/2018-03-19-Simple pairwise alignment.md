@@ -62,7 +62,9 @@ using namespace std;
 
 Some functions will need these to be executed.
 
-First things first, we'll determine the scoring method that will be used. This will be done by using a small matrix in which all possible combinations are given a certain score:
+### Scoring methods
+
+First things first, we'll determine the scoring method that will be used. This will be done by using a substitution scoring matrix in which all possible combinations are given a certain score:
 
 |         |  C  |  T  |  A  |  G  |
 |:-------:|:---:|:---:|:---:|:---:|
@@ -87,6 +89,8 @@ int gap_affinity (int gap, int gap_ext, int& length){
 ```
   </div>
 </details>
+
+### Overview structure
 
 Next, we'll go through the code from the bottom to the top. This is done for a more readable structure of the code.
 The ```main()``` will call all main functions, gather user input and output some feedback:
@@ -153,6 +157,12 @@ int main (int argc, char** argv){
 </details>
 
 As you can see, several variables are initialised and the sequences A and B will be read in from a file called "*sequences.txt*". ```NW()``` is the algorithm which will align the sequences. Let's head to this function and see what it does!
+
+First, the required matrices are created and then initialised by ```init()```. The horizontal axis will cover sequence A and the vertical axis sequence B. After this, the ```alignment()``` function will actually align the two sequences *from the back to the front*: this will sometimes result in a somewhat counterintuitive global alignment. The execution time is being calculated for evaluation purposes, but can easily be skipped by editing it yourself. 
+
+After the calculations, the matrices and alignment are optionally printed and the results are exported together with the used parameters. Some print/export operations are not written in a seperate function and the reason is quite simple: I sadly didn't have the time to convert them in a function.
+
+Printing of the alignment is done using a more biologically relevant method: nucleotides *n* through *n+align_nuc* of aligned sequences A and B are printed below each other iteratively, giving more insight in the alignment.
 
 <details>
   <summary class="summary">Toggle C++ code</summary>
@@ -314,7 +324,7 @@ int** NW (string A, string B, string& A_al, string& B_al, int A_n, int B_n, int 
   </div>
 </details>
 
-First, the required matrices are created and then initialised by ```init()```. The horizontal axis will cover sequence A and the vertical axis sequence B. The execution time is being calculated for evaluation purposes. 
+The ```init()``` function already creates the first column and row, filling them with a hardcoded affine gap function. The traceback matrix automatically gets a "-" or "|", indicitating a step left or up (both gaps, but in either B or A respectively). The rest of the matrix will be filled by the ```alignment()``` function, which is discussed next.
 
 <details>
   <summary class="summary">Toggle C++ code</summary>
@@ -340,7 +350,7 @@ void  init (int** M, char** M_tb, int A_n, int B_n, int gap, int gap_ext){
   </div>
 </details>
 
-The alignment is made by the function ```alignment()```, which also takes the gap penalty as variable to feed into the affine gap function. After the calculations, the matrices and alignment are optionally printed and the results are exported together with the used parameters. Some print/export operations are not written in a seperate function and the reason is quite simple: I sadly didn't have the time to convert them in a function.
+The alignment is made by the function ```alignment()```, which also takes the gap penalty as variable to feed into the affine gap function. First, the algorithm scores all possible alignment possibilities in the scoring matrix using the substitution scoring matrix. Secondly, the traceback matrix is created, based on the scoring matrix: From the lower-right corner, the highest scoring cell directly above, diagonally left or left indicates the next step in the alignment up to the upper left corner. This will lead to the final, most optimal global alignment. Lastly, the traceback matrix is used to create the *backward* alignments: it follows the traceback along the highest scoring cells from the lower-right corner to the upper-right corner, introducing gaps in sequence A or B when not going diagonal.
 
 <details>
   <summary class="summary">Toggle C++ code</summary>
@@ -423,10 +433,7 @@ int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B
   </div>
 </details>
 
-The ```init()``` function already creates the first column and row, filling them with a hardcoded affine gap function. The traceback matrix automatically gets a "-" or "|", indicitating a step left or up respectively (both gaps, but in either B or A).
-```alignment()``` first looks at one position in both sequences and tries to match them. The score is given by the small matrix discussed above and if a gap is introduced, the affine gap function is called and the gap-length is changed.
-
-For printing of the matrices, two functions were made:
+For the printing of the matrices, two functions were used from the original, referenced code:
 
 <details>
   <summary class="summary">Toggle C++ code</summary>
@@ -478,3 +485,5 @@ void  print_tb (char** M_tb, string A, string B, int A_n, int B_n){
 </details>
 
 This concludes all the necessary code for this script. The choice to export your files and time the execution duration is yours and the code for this is easily rewritten/deleted! This script can only be used for pairwise alignments, but stay tuned for an adaption of this script for a Multiple Sequence Alignment (MSA)!
+
+*For the complete script, please see my [GitHub repository]({{ site.githublink }})*.
