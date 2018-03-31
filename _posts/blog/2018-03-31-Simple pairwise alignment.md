@@ -40,6 +40,8 @@ The principles are: a perfect match on a position on two sequences gives the hig
     
 <p class="image-caption">Needleman-Wunsch pairwise sequence alignment. <a href="https://commons.wikimedia.org/w/index.php?curid=31963972">By Slowkow - Own work, CC0</a></p>
 
+The scoring matrix shown above show the maximal alignment score for any given sequence alignment at that point. To get the optimal alignment, you would follow the highest scoring cells from the lower-right corner to the upper-left corner. Then you invert the given sequence to get the actual alignment. Because it aligns from the back to the front, some alignments might be somewhat unexpected as you actually read it from left to right while it is aligned from right to left.
+
 ## Writing the algorithm
 
 To start off with, put this on the top of you c++ script:
