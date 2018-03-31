@@ -18,6 +18,16 @@
   class: icon-linkedin
   title: "My LinkedIn profile"
 
+- name: Dev.to
+  url: https://dev.to/mvdsman
+  class: icon-edit
+  title: "Dev.to Community profile"
+  
+- name: Site repo
+  url: https://github.com/MvdSman/mvdsman.github.io
+  class: icon-home
+  title: "Repository of this site"
+
 #- name: Mixcloud
 #  url: http://www.mixcloud.com/phlow/
 #  class: icon-cloud
