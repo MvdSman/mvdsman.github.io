@@ -324,7 +324,7 @@ int** NW (string A, string B, string& A_al, string& B_al, int A_n, int B_n, int 
   </div>
 </details>
 
-The ```init()``` function already creates the first column and row, filling them with a hardcoded affine gap function. The traceback matrix automatically gets a "-" or "/|", indicitating a step left or up (both gaps, but in either B or A respectively). The rest of the matrix will be filled by the ```alignment()``` function, which is discussed next.
+The ```init()``` function already creates the first column and row, filling them with a hardcoded affine gap function. The traceback matrix automatically gets a horizontal or vertical line, indicitating a step left or up (both gaps, but in either B or A respectively). The rest of the matrix will be filled by the ```alignment()``` function, which is discussed next.
 
 <details>
   <summary class="summary">Toggle C++ code</summary>
