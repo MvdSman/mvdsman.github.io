@@ -19,6 +19,9 @@ show_meta: true
 ---
 
 Welcome to my first post posted on this site! This will be quite a short one, but I hope it will be the first of many.
+
+*All data (anonymised if applicable), used script and created visualisations can be found in my [GitHub repository]({{ site.githublink }}).*
+
 I love visualising interesting, uncommon datasets so please [let me know](#disqus_thread) down in the comments if you have any interesting data laying around!
 
 Let's just skip towards the code now, shall we?
