@@ -1,14 +1,14 @@
 ---
 layout: page
 title: "Contact"
-meta_title: "Contact and use our contact form"
+meta_title: "Contact me."
 header:
     image_fullwidth: "header_R.jpg"
-subheadline: "Wufoo-powered contact forms"
-teaser: "Get in touch with me? Use the contact form."
+subheadline: "Ways to contact me."
+teaser: "Get in touch with me? Use one of the following media."
 permalink: "/contact/"
 ---
-If you need a fabulous contact form for your website, I suggest you use [Wufoo][1]. You can use three forms for free, you get no spam and if you get more than 100 entries you have to pay.
-
-
- [1]: http://www.wufoo.com/
+If you want to contact me, please use one of the following media:
+* [Twitter](http://twitter.com/NEMESISprj)
+* [LinkedIn](https://www.linkedin.com/in/markvandersman/)
+* [Dev.to](https://dev.to/mvdsman)
