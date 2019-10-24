@@ -2,9 +2,9 @@
 
 remote_theme: feeling-responsive
 timezone: Europe/Amsterdam
-title: "R blog & projects"
+title: "Blog & Projects"
 author: mark # see authors.yml
-site.description: "Showcasing R projects."
+site.description: "Showcasing my personal projects."
 url: "https://mvdsman.github.io"
 disqus_shortname: "personal-r-projects"
 credits: '<p>Based on <a href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a> by <a href="http://phlow.de/">Phlow</a> with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a>.</p>'
