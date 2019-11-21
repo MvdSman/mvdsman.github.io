@@ -446,10 +446,12 @@ int alignment (int** M, char** M_tb, string A, string B, string& A_al, string& B
     int length = 0; // initial gap length
 
     // create substitution scoring matrix
-    const int  s[4][4] =   {{ a, b, c, c },
+    const int  s[4][4] =   {
+                            { a, b, c, c },
                             { b, a, c, c },
                             { c, c, a, b },
-                            { c, c, b, a }};
+                            { c, c, b, a }
+                            };
 
     for( i = 1; i <= B_n; i++ ){
         for( j = 1; j <= A_n; j++ ){
