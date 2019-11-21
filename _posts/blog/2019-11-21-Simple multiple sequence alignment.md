@@ -38,10 +38,10 @@ As I stated in [my previous post about pairwise alignments](/blog/Simple-pairwis
 To remind you, the principles are: a perfect match on a position on two sequences gives the highest score, mismatches get penalties and gaps are usually penalised using some function that takes into account how long the gap will actually be among multiple positions.
 
 ![Image not found!](/images/Cpp/2018-03-21_Needleman-Wunsch_pairwise_sequence_alignment.png){:target="_blank" .image-wrapper}
-    
-The only thing that has changed when aligning multiple sequences, is that you have to build it up iteratively from best matches to worst matches. This is why we will run pairwise alignments against all sequences and then pick the best one as our template for the other alignments. I have chosen to align only 3 sequences to keep it simple, so once you find the best pair (the in-group as I call it), you'll only have to align the aligned in-group to the third sequence!
 
 <p class="image-caption">Needleman-Wunsch pairwise sequence alignment. <a href="https://commons.wikimedia.org/w/index.php?curid=31963972">By Slowkow - Own work, CC0</a></p>
+    
+The only thing that has changed when aligning multiple sequences, is that you have to build it up iteratively from best matches to worst matches. This is why we will run pairwise alignments against all sequences and then pick the best one as our template for the other alignments. I have chosen to align only 3 sequences to keep it simple, so once you find the best pair (the in-group as I call it), you'll only have to align the aligned in-group to the third sequence!
 
 To boldly re-use my previous explanation about the scoring matrix: The scoring matrix shown above show the maximal alignment score for any given sequence alignment at that point. To get the optimal alignment, you would follow the highest scoring cells from the lower-right corner to the upper-left corner. Then you invert the given sequence to get the actual alignment. Because it aligns from the back to the front, some alignments might be somewhat unexpected as you actually read it from left to right while it is aligned from right to left.
 
