@@ -1,3 +1,10 @@
+/*
+This program was written by Mark van der Sman using some components of Rolf Muertter http://www.rolfmuertter.com.
+It was published on https://mvdsman.github.io/blog/Simple-pairwise-alignment/.
+
+Use: pairwise alignment of two DNA sequences using Needleman and Wunsch-algorithm.
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
