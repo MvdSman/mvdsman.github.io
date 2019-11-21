@@ -601,10 +601,12 @@ int alignment_MSA (int** M, char** M_tb, string A, string B, string C, string& A
     // C = sequence outgroup
 
     // create substitution scoring matrix
-    const int  s[4][4] =   {{ a, b, c, c },
+    const int  s[4][4] =   {
+                            { a, b, c, c },
                             { b, a, c, c },
                             { c, c, a, b },
-                            { c, c, b, a }};
+                            { c, c, b, a }
+                            };
 
     for( i = 1; i <= C_n; i++ ){
         for( j = 1; j <= A_n; j++ ){
