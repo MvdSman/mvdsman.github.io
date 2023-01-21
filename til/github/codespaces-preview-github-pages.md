@@ -11,13 +11,15 @@ The following steps allow you to preview GitHub Pages in Codespaces:
 3. Using the file browser on the left (assuming VS Code is used):
    1. Select the `/images/src/jekyll/.devcontainer/` folder and copy-paste it into the root of your own Repository (root of the file browser)
    2. Delete the folder `/vscode-dev-containers/` since this its contents are no longer needed
-4. Push the newly created `/.devcontainer/` changes to the origin to make sure Codespaces can build with the new container
-5. Restart your Codespaces instance (on start-up it will install the required packages)
-6. To run:
+4. In `/.devcontainer/devcontainer.json`, set the value of `"remoteUser"` to `"root"`
+5. Push the newly created `/.devcontainer/` changes to the origin to make sure Codespaces can build with the new container
+6. Rebuild or restart your Codespaces instance (on start-up it will install the required packages)
+7. To run:
    - If your Jekyll project contains a `Gemfile` in the root folder, the development container will install all gems at startup by running `bundle install`. This is the [recommended](https://jekyllrb.com/docs/step-by-step/10-deployment/#gemfile) approach as it allows you to specify the exact Jekyll version your project requires and list all additional Jekyll plugins.
    - If there's no `Gemfile`, the development container will install Jekyll automatically, picking the latest version. You might need to manually install the other dependencies your project relies on, including all relevant Jekyll plugins.
 
       > Refer to [this guide](https://containers.dev/guide/dockerfile) for more details.
+8. Open the newly added PORTS tab next to your terminal: these are the open connections where you can preview the Pages
 
 # References
 
