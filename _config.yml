@@ -5,3 +5,23 @@ timezone: Europe/Amsterdam
 title: "Digital Garden"
 author: Mark van der Sman # see authors.yml
 site.description: "Public collection of notes and learnings."
+
+domain: mvdsman.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
+url: https://mvdsman.github.io  # the base hostname and protocol for your site, e.g. http://example.com
+baseUrl: /pages/                # place folder name if the site is served in a subfolder
+
+# Gem plugins
+plugins:
+    - jekyll-asciidoc
+
+# Folder management
+exclude:
+    - README.md
+
+# This URL points directly to the images directory making
+# things easier to link to images in posts and templates. It needs a slash at the end.
+#
+# Example: <img src="{{ site.urlimg }}{{ post.image.title }}" />
+# Markdown-Example for posts ![Image Text]({{ site.urlimg }}image.jpg)
+#
+urlimg: "https://mvdsman.github.io/images/"
