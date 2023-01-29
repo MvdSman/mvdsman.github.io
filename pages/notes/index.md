@@ -5,10 +5,10 @@
 {% assign pages = site.pages | sort: 'title' %}
 
 <ul>
-    {% for item in pages %}
-        {% assign html_item = item.name | replace: '.md', '.html' %}
-        {% if item.dir == page.dir and item.path != page.path %}
-           <li><a href="{{ html_item }}" > {{ item.title }} </a></li>
-        {% endif %}
+   {% for item in pages %}
+      {% if item.dir == page.dir and item.path != page.path %}
+         {% assign html_item = item.name | replace: '.md', '.html' %}
+         <li><a href="{{ html_item }}" > {{ item.title }} </a></li>
+      {% endif %}
    {% endfor %}
 </ul>

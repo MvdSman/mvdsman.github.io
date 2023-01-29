@@ -4,7 +4,7 @@ GitHub Codespaces allows for using an IDE like VSCode in the web browser in a Vi
 
 To locally preview GitHub Pages, you'd need Jekyll and Ruby. However, using Codespaces, you can simply start up the VM with a preset of Jekyll and Ruby installs to preview your pages wherever and whenever.
 
-## How to
+## How To
 
 The following steps allow you to preview GitHub Pages in Codespaces:
 
