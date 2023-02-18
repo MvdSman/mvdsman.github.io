@@ -10,7 +10,7 @@ To automatically create a list of files, use the following snippet.
 ### List all pages in the same directory
 
 {% raw %}
-```
+```html
 {% assign pages = site.pages | sort: 'title' %}
 
 <ul>
@@ -27,7 +27,7 @@ To automatically create a list of files, use the following snippet.
 ### List all pages in a specific directory
 
 {% raw %}
-```
+```html
 {% assign pages = site.pages | sort: 'title' %}
 
 {% assign target_dir = page.dir | append: 'path/to/target_dir/' %}
