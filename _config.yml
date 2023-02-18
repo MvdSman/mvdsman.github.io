@@ -24,4 +24,4 @@ exclude:
 # Example: <img src="{{ site.urlimg }}{{ post.image.title }}" />
 # Markdown-Example for posts ![Image Text]({{ site.urlimg }}image.jpg)
 #
-urlimg: "https://mvdsman.github.io/images/"
+urlimg: "/images/"
