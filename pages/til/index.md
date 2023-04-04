@@ -15,6 +15,18 @@
    {% endfor %}
 </ul>
 
+## Git
+
+{% assign target_dir = page.dir | append: 'git/' %}
+<ul>
+    {% for item in pages %}
+        {% if item.dir == target_dir %}
+            {% assign html_item = item.name | replace: '.md', '.html' %}
+           <li><a href="{{ target_dir | append: html_item }}" > {{ item.title }} </a></li>
+        {% endif %}
+   {% endfor %}
+</ul>
+
 ## GitHub
 
 {% assign target_dir = page.dir | append: 'github/' %}
