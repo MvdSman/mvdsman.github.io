@@ -47,4 +47,4 @@ This will create a folder called `html-cov` in the execution location which will
 
 ## References
 
-- [Py.Test : Reporting and HTML output](https://stackoverflow.com/questions/17557813/py-test-reporting-and-html-output)
+- [PyTest : Reporting and HTML output](https://stackoverflow.com/questions/17557813/py-test-reporting-and-html-output)
