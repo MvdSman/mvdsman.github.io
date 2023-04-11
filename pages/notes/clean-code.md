@@ -2,6 +2,8 @@
 
 While reading _Clean Code: A Handbook of Agile Software Craftsmanship_ by Robert C. Martin, A.K.A. "Uncle Bob", a lot of points made were very relatable. I decided to create these notes to keep a summary of the - for me - most important things to keep in mind.
 
+> I try to link idioms, principles, and other constructs to the [Refactoring](https://refactoring.guru/refactoring/catalog) and [Design Patterns](https://refactoring.guru/design-patterns/catalog) sections of the **Refactoring Guru website**. This is a very handy site for finding patterns, code smells, and more!
+
 ## Why clean code
 
 Why would you want code to be clean? For me, it's mostly because:
@@ -100,6 +102,14 @@ Why would you want code to be clean? For me, it's mostly because:
 - **Splitting of a large function often allows for splitting of a large class.**
 - **Private method behavior of a subset of class functions hint towards splitting of the class.**
 - **Follow the Open-Closed Principle (OCP):** Classes should be open to extension (subclasses), but closed for modification.
-- **Use interfaces and abstract classes to isolate the impact of changes.**
+- **Use interfaces and abstract classes to isolate the impact of changes ([Facade Design Pattern](https://refactoring.guru/design-patterns/facade)).**
 - **Follow the Dependency Inversion Principle (DIP):** classes should depend on abstractions, not on concrete details.
   > For example, a call to a third-party API should not be made directly to that API. Instead, an abstraction interface (class) should be made which is maintanable and testable.
+
+### Systems
+
+- **Separate Constructing a System from Using It:** Prevent the use of the [Lazy Initialization Idiom](https://refactoring.guru/design-patterns/proxy).
+- **Separation of Main**: Main will build the objects required for the system, then passes them to the application.
+- **Use the [(Abstract) Factory Pattern](https://refactoring.guru/design-patterns/abstract-factory) when the application is responsible for *when* an object gets created.**
+- **Use Dependency Injection (DI) to apply Inversion of Control (IoC) to dependency management ([Mediator Design Pattern](https://refactoring.guru/design-patterns/mediator)).**
+- **Software systems have scalable architectures - *if* - we maintain the proper separation of concerns.**
