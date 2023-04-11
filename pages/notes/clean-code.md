@@ -2,6 +2,8 @@
 
 While reading _Clean Code: A Handbook of Agile Software Craftsmanship_ by Robert C. Martin, A.K.A. "Uncle Bob", a lot of points made were very relatable. I decided to create these notes to keep a summary of the - for me - most important things to keep in mind.
 
+> I try to link idioms, principles, and other constructs to the [Refactoring](https://refactoring.guru/refactoring/catalog) and [Design Patterns](https://refactoring.guru/design-patterns/catalog) sections of the **Refactoring Guru website**. This is a very handy site for finding patterns, code smells, and more!
+
 ## Why clean code
 
 Why would you want code to be clean? For me, it's mostly because:
@@ -62,3 +64,52 @@ Why would you want code to be clean? For me, it's mostly because:
   > If a 3rd party API returns Null, consider wrapping the Null-returning methods in a method that either throws an exception or returns a special case object
 
 ### Boundaries
+
+- **Use wrappers around third-party APIs and consistently use them.** This gives you one location to update upon API changes, instead of having to go through your entire repo.
+- **Use "learning tests" to get a feeling of how a new third-party behaves.** This lets you check your understanding of a new package. Write tests which call the API like you expect to use it in your application.
+  > "Learning tests" are a great way to **learn** about a new package and **document** your findings (as code) at the same time!
+- **Keep "learning tests" in your code base as a functionality validation throughout versions.** Aside from your learning how to use a third-party API, they also allow you to validate the functionality of those same functionalities for newer releases down the road.
+- **Use the [Adapter Pattern](https://refactoring.guru/design-patterns/adapter) to test/implement (even non-existing) API interfaces.** This gives you the flexibility to create a testbench environment effortlessly and decouple the transmitter from the receiver.
+
+### Unit Tests
+
+- **Try to keep the Three Laws of TDD *loosely* in mind:**
+  1. You may not write production code until you have written a failing unit test.
+  2. You may not write more of a unit test than the bare minimum to fail, and not compiling is failing.
+  3. You may not write more production code than is minimally required to pass all unit tests.
+  > *Do not adhere to these laws too strictly, for they might lead to way too many tests to be manageable.*
+- **Test code is just as important as production code.** As said by Robert C. Martin: "*Without tests, every change is a possible bug.*"
+- **Write clean tests:**
+  - **Readability.**
+  - **Build-Operate-Check.**
+  - **[Template Method](https://refactoring.guru/design-patterns/template-method).**
+  - **Single Concept per Test (Given-When-Then).**
+- **Five rules for clean tests (F.I.R.S.T.):**
+  1. **Fast** -> People will run them often.
+  2. **Independent** -> Test dependency can cause a cascade of failures.
+  3. **Repeatable** -> Same results in any environment.
+  4. **Self-Validating** -> A boolean output make objectivity and automation possible.
+  5. **Timely** -> Writing tests *just before* the production code keeps the code testable.
+
+### Classes
+
+- **Classes should have few responsibilities.**
+- **The name of the class should describe the responsibilities.**
+  > If the name of the class contains "if", "and", "or", "but", or becomes too complex to describe the responsibilities, you should refactor it into smaller classes!
+- **Follow the Single Responsibility Principle (SRP):** a class should have one reason to change.
+- **Classes should have few instance variables.**
+- **Each class method should manipulate one or more of the instance variables.** The more variables used by a method, the higher the cohesion (which is good).
+- **Splitting of a large function often allows for splitting of a large class.**
+- **Private method behavior of a subset of class functions hint towards splitting of the class.**
+- **Follow the Open-Closed Principle (OCP):** Classes should be open to extension (subclasses), but closed for modification.
+- **Use interfaces and abstract classes to isolate the impact of changes ([Facade Design Pattern](https://refactoring.guru/design-patterns/facade)).**
+- **Follow the Dependency Inversion Principle (DIP):** classes should depend on abstractions, not on concrete details.
+  > For example, a call to a third-party API should not be made directly to that API. Instead, an abstraction interface (class) should be made which is maintanable and testable.
+
+### Systems
+
+- **Separate Constructing a System from Using It:** Prevent the use of the [Lazy Initialization Idiom](https://refactoring.guru/design-patterns/proxy).
+- **Separation of Main**: Main will build the objects required for the system, then passes them to the application.
+- **Use the [(Abstract) Factory Pattern](https://refactoring.guru/design-patterns/abstract-factory) when the application is responsible for *when* an object gets created.**
+- **Use Dependency Injection (DI) to apply Inversion of Control (IoC) to dependency management ([Mediator Design Pattern](https://refactoring.guru/design-patterns/mediator)).**
+- **Software systems have scalable architectures - *if* - we maintain the proper separation of concerns.**
