@@ -88,3 +88,18 @@ Why would you want code to be clean? For me, it's mostly because:
   3. **Repeatable** -> Same results in any environment.
   4. **Self-Validating** -> A boolean output make objectivity and automation possible.
   5. **Timely** -> Writing tests *just before* the production code keeps the code testable.
+
+### Classes
+
+- **Classes should have few responsibilities.**
+- **The name of the class should describe the responsibilities.**
+  > If the name of the class contains "if", "and", "or", "but", or becomes too complex to describe the responsibilities, you should refactor it into smaller classes!
+- **Follow the Single Responsibility Principle (SRP):** a class should have one reason to change.
+- **Classes should have few instance variables.**
+- **Each class method should manipulate one or more of the instance variables.** The more variables used by a method, the higher the cohesion (which is good).
+- **Splitting of a large function often allows for splitting of a large class.**
+- **Private method behavior of a subset of class functions hint towards splitting of the class.**
+- **Follow the Open-Closed Principle (OCP):** Classes should be open to extension (subclasses), but closed for modification.
+- **Use interfaces and abstract classes to isolate the impact of changes.**
+- **Follow the Dependency Inversion Principle (DIP):** classes should depend on abstractions, not on concrete details.
+  > For example, a call to a third-party API should not be made directly to that API. Instead, an abstraction interface (class) should be made which is maintanable and testable.
