@@ -62,3 +62,29 @@ Why would you want code to be clean? For me, it's mostly because:
   > If a 3rd party API returns Null, consider wrapping the Null-returning methods in a method that either throws an exception or returns a special case object
 
 ### Boundaries
+
+- **Use wrappers around third-party APIs and consistently use them.** This gives you one location to update upon API changes, instead of having to go through your entire repo.
+- **Use "learning tests" to get a feeling of how a new third-party behaves.** This lets you check your understanding of a new package. Write tests which call the API like you expect to use it in your application.
+  > "Learning tests" are a great way to **learn** about a new package and **document** your findings (as code) at the same time!
+- **Keep "learning tests" in your code base as a functionality validation throughout versions.** Aside from your learning how to use a third-party API, they also allow you to validate the functionality of those same functionalities for newer releases down the road.
+- **Use the [Adapter Pattern](https://refactoring.guru/design-patterns/adapter) to test/implement (even non-existing) API interfaces.** This gives you the flexibility to create a testbench environment effortlessly and decouple the transmitter from the receiver.
+
+### Unit Tests
+
+- **Try to keep the Three Laws of TDD *loosely* in mind:**
+  1. You may not write production code until you have written a failing unit test.
+  2. You may not write more of a unit test than the bare minimum to fail, and not compiling is failing.
+  3. You may not write more production code than is minimally required to pass all unit tests.
+  > *Do not adhere to these laws too strictly, for they might lead to way too many tests to be manageable.*
+- **Test code is just as important as production code.** As said by Robert C. Martin: "*Without tests, every change is a possible bug.*"
+- **Write clean tests:**
+  - **Readability.**
+  - **Build-Operate-Check.**
+  - **[Template Method](https://refactoring.guru/design-patterns/template-method).**
+  - **Single Concept per Test (Given-When-Then).**
+- **Five rules for clean tests (F.I.R.S.T.):**
+  1. **Fast** -> People will run them often.
+  2. **Independent** -> Test dependency can cause a cascade of failures.
+  3. **Repeatable** -> Same results in any environment.
+  4. **Self-Validating** -> A boolean output make objectivity and automation possible.
+  5. **Timely** -> Writing tests *just before* the production code keeps the code testable.
