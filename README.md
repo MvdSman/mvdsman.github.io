@@ -5,6 +5,7 @@ You can use the [editor on GitHub](https://github.com/MvdSman/mvdsman.github.io/
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 > **Hosted website: [https://mvdsman.github.io/](https://mvdsman.github.io/)**
+> Theme based on [Leap Day](https://github.com/pages-themes/leap-day)
 
 ### Markdown
 
