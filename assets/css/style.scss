@@ -40,15 +40,21 @@ section {
 #banner #theme-toggle {
     position: fixed;
     left: 50%;
+    float: left;
     margin-left: -198px;
     padding: 10px 12px;
-    margin-top: 6px;
+    margin-top: 8px;
     line-height: 14px;
     font-size: 14px;
     // background-color: #FFE788;
     white-space: nowrap;
     // background: url(/assets/img/dark-theme-svgrepo-com.svg);
 }
+
+#banner .fork {
+    margin-top: 8px;
+}
+
 @media print, screen and (max-width: 1060px) {
     section { padding: 10px 10px; }
 }
@@ -58,7 +64,7 @@ section {
     #banner #theme-toggle {
         // float: left;
         // display: inline-block;
-        margin-left: 148px;
+        margin-left: 147px;
         position: fixed;
         left: 0px;
     }
@@ -76,12 +82,16 @@ section {
         top: 0px;
     }
     #banner #theme-toggle {
+        // float: left;
         display: flex;
         position: sticky;
+        left: 0px;
+        margin-left: 22px;
     }
     #banner .fork {
         display: flex;
         position: sticky;
+        // margin-left: none;
     }
     // #banner #logo {
     //     display: flex;
