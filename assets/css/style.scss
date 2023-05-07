@@ -3,39 +3,83 @@
 
 @import "{{ site.theme }}";
 
+// Theme colors ===
 html, html[data-theme="light"] { 
 	--light-text-color: rgb(72, 72, 74);
   	--link-color: rgb(0, 112, 201);
+    --main-background-img: url(../images/body-background.png);
   	--main-background-color: rgb(255, 255, 255);
   	--main-text-color: rgb(51, 51, 51);
+    --secondary-text-color: rgb(43, 43, 43);
+    --banner-background-color: rgb(255, 204, 0);
+    --section-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09), inset 0px 0px 2px 2px rgba(255, 255, 255, 0.5), inset 0 0 5px 5px rgba(255, 255, 255, 0.4);
+    --section-background-color: rgb(251, 251, 251);
+    --button-color: linear-gradient(rgb(255, 231, 136), rgb(255, 206, 56));
+    --button-border: 1px solid rgb(219, 165, 0);
+    --button-hover-color: rgb(255, 231, 136);
 }
 
 html[data-theme="dark"] {
-		--light-text-color: rgb(199, 199, 204);
-  		--link-color: rgb( 100, 210, 255);
-  		--main-background-color: rgb(28, 28, 30);
-  		--main-text-color: rgb(229, 229, 234);
-	}
+    --light-text-color: rgb(199, 199, 204);
+    --link-color: rgb( 100, 210, 255);
+    --main-background-img: none;
+    --main-background-color: rgb(28, 28, 30);
+    --main-text-color: rgb(229, 229, 234);
+    --secondary-text-color: rgb(220, 220, 225);
+    --banner-background-color: rgb(135, 135, 135);
+    --section-box-shadow: none;
+    --section-background-color: rgb(28, 28, 30);
+    --button-color: linear-gradient(rgb(202, 202, 202), rgb(180, 180, 180));
+    --button-border: 1px solid rgb(155, 155, 155);
+    --button-hover-color: rgb(202, 202, 202);
+}
 
 @media (prefers-color-scheme: dark) {
+	html[data-theme="light"] { 
+        --light-text-color: rgb(72, 72, 74);
+        --link-color: rgb(0, 112, 201);
+        --main-background-img: url(../images/body-background.png);
+        --main-background-color: rgb(255, 255, 255);
+        --main-text-color: rgb(51, 51, 51);
+        --secondary-text-color: rgb(43, 43, 43);
+        --banner-background-color: rgb(255, 204, 0);
+        --section-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.09), inset 0px 0px 2px 2px rgba(255, 255, 255, 0.5), inset 0 0 5px 5px rgba(255, 255, 255, 0.4);
+        --section-background-color: rgb(251, 251, 251);
+        --button-color: linear-gradient(rgb(255, 231, 136), rgb(255, 206, 56));
+        --button-border: 1px solid rgb(219, 165, 0);
+        --button-hover-color: rgb(255, 231, 136);
+	}
+
 	html, html[data-theme="dark"] {
 		--light-text-color: rgb(199, 199, 204);
   		--link-color: rgb( 100, 210, 255);
-  		--main-background-color: rgb(28, 28, 30);
+        --main-background-img: none;
+  		--main-background-color: rgb(20, 20, 25);
   		--main-text-color: rgb(229, 229, 234);
-	}
-	
-	html[data-theme="light"] { 
-	--light-text-color: rgb(72, 72, 74);
-  	--link-color: rgb(0, 112, 201);
-  	--main-background-color: rgb(255, 255, 255);
-  	--main-text-color: rgb(51, 51, 51);
+  		--secondary-text-color: rgb(220, 220, 225);
+        --banner-background-color: rgb(135, 135, 135);
+        --section-box-shadow: none;
+        --section-background-color: rgb(28, 28, 30);
+        --button-color: linear-gradient(rgb(202, 202, 202), rgb(180, 180, 180));
+        --button-border: 1px solid rgb(155, 155, 155);
+        --button-hover-color: rgb(202, 202, 202);
 	}
 }
 
-section {
-    background: var(--main-background-color);
-}
+// Theme color application ===
+body { background-image: var(--main-background-img); background-color: var(--main-background-color); }
+#banner {background: var(--banner-background-color); border: none;}
+#banner .button {background: var(--button-color); border: var(--button-border)}
+#banner .button:hover { background: var(--button-hover-color); }
+section {box-shadow: var(--section-box-shadow); background: var(--section-background-color); }
+h1, h2, h3, h4, h5, h6 { color: var(--main-text-color); }
+nav ul [class^="tag-h"] a { color: var(--secondary-text-color); }
+nav ul li.tag-h1 a { color: var(--main-text-color); }
+a { color: var(--link-color); }
+p { color: var(--secondary-text-color); }
+li { color: var(--secondary-text-color); }
+
+// Layout ===
 
 #banner #theme-toggle {
     position: fixed;
@@ -46,9 +90,7 @@ section {
     margin-top: 8px;
     line-height: 14px;
     font-size: 14px;
-    // background-color: #FFE788;
     white-space: nowrap;
-    // background: url(/assets/img/dark-theme-svgrepo-com.svg);
 }
 
 #banner .fork {
@@ -62,8 +104,6 @@ section {
 @media print, screen and (max-width: 720px) {
     section { padding: 5px 5px; }
     #banner #theme-toggle {
-        // float: left;
-        // display: inline-block;
         margin-left: 147px;
         position: fixed;
         left: 0px;
@@ -72,7 +112,6 @@ section {
 
 @media print, screen and (max-width: 480px) {
     section {
-        // margin-top: 50px;
         margin-bottom: 0px;
         width: auto;
     }
@@ -82,7 +121,6 @@ section {
         top: 0px;
     }
     #banner #theme-toggle {
-        // float: left;
         display: flex;
         position: sticky;
         left: 0px;
@@ -91,11 +129,5 @@ section {
     #banner .fork {
         display: flex;
         position: sticky;
-        // margin-left: none;
     }
-    // #banner #logo {
-    //     display: flex;
-    //     position: sticky;
-    //     float: right;
-    // }
 }
