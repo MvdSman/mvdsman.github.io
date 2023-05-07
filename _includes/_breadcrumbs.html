@@ -6,6 +6,9 @@
 *
 {% endcomment %}
 
+<!-- Create automatic index of pages which can be found in a specific directory -->
+{% assign pages = site.pages | sort: 'title' %}
+
 <div class="breadcrumbs" aria-label="breadcrumbs">
   <a href="/">Home</a>
   {% if page.url != site.url and page.url != site.url | append: site.baseurl %}
@@ -14,7 +17,32 @@
       {% if forloop.last %}
         / <a class="current">{{ page.title }}</a>
       {% elsif forloop.index > 2 %}  <!-- Prevent links to `/` and `pages/` -->
-        / <a href="{% assign crumb_limit = forloop.index %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}">{{ crumb | replace:'-',' ' | capitalize }}</a>
+        {% assign crumb_limit = forloop.index %}
+
+        <!-- Check if the current crumb should be a link to a .md file or a folder-->
+        {% assign crumb_md = {{crumb | append: '.md'}} %}
+        {% assign crumb_is_md = 'No' %}
+        {% for item in pages %}
+          {% if item.name contains crumb_md %}
+            {% assign crumb_is_md = 'Yes' %}
+          {% endif %}
+        {% endfor %}
+        {% assign crumb_link = '' %}
+
+        <!-- Create crumb link, defaulted to folder -->
+        {% for crumb_ in crumbs limit: crumb_limit %}
+          {% assign crumb_link = {{crumb_link | append: crumb_ | append: '/'}} %}
+        {% endfor %}
+
+        <!-- If it's a .md file, replace the appended '/' by '.html' -->
+        {% if crumb_is_md == 'Yes' %}
+          {% assign crumb_link = crumb_link | append: '#END' %}
+          {% assign crumb_link = crumb_link | remove: '/#END' | append: '.html' %}
+        {% endif %}
+
+        / <a href="{{crumb_link}}">
+          {{ crumb | replace:'-',' ' | capitalize }}
+        </a>
       {% endif %}
     {% endfor %}
   {% endif %}
